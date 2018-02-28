@@ -70,17 +70,27 @@ There are 3 possibilities to autowire beans created by Spring in Kotlin classes.
         override fun findByDetails(street: String, city: String, country: String) = addressRepo.findByStreetContainsAndCityContainsAndCountryContains(street, city, country)
     }
     ```
+# Swagger 
+The project includes Swagger2 with an UI which is accessible on 
+http://localhost:8080/swagger-ui.html
+
+This can be used to test the REST endpoint and for API documentation.
+
+
 
 ### Links
-1. https://martinfowler.com/articles/richardsonMaturityModel.html
-2. https://projects.spring.io/spring-boot/
-3. http://projects.spring.io/spring-data/
-4. http://www.h2database.com/html/main.html
-5. https://kotlinlang.org/docs/reference/
+1. Richardson Maturity Model: https://martinfowler.com/articles/richardsonMaturityModel.html
+2. Spring Boot:  https://projects.spring.io/spring-boot/
+3. Spring Data: http://projects.spring.io/spring-data/
+4. H2 database: http://www.h2database.com/html/main.html
+5. Kotlin reference:  https://kotlinlang.org/docs/reference/
 6. Domain Driven Design
     1. Book: Domain-Driven Design: Tackling Complexity in the Heart of Software by Eric J. Evans
     2. https://martinfowler.com/tags/domain%20driven%20design.html
-7. https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods
+7. HTTP verbs: https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods
 8. Postman REST Client: https://www.getpostman.com/
+9. Swagger: https://swagger.io/
+10. Spring Boot Swagger integration: https://springfox.github.io/springfox/
+
 
 
