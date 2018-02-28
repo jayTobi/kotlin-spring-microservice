@@ -12,15 +12,11 @@ import javax.transaction.Transactional
 class UserServiceImpl(val userRepo: UserRepository) : UserService {
     override fun find(id: Long): Optional<User> = userRepo.findById(id)
 
-    override fun findAll(): List<User> {
-        userRepo.save(User(null, "foo name", LocalDateTime.now().toString()))
-        return userRepo.findAll().toList()
-    }
+    override fun findAll(): List<User> = userRepo.findAll().toList()
 
     override fun save(user: User): User? = userRepo.save(user)
 
     override fun delete(user: User) = userRepo.delete(user)
 
     override fun deleteById(id: Long) = userRepo.deleteById(id)
-
 }

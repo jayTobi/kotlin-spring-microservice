@@ -66,11 +66,8 @@ There are 3 possibilities to autowire beans created by Spring in Kotlin classes.
     ```
 3. @Autowired annotation for **constructor** 
     ```kotlin
-    class FooBean @Autowired constructor(
-        private val mongoTemplate: MongoTemplate, 
-        private val solrClient: SolrClient
-    ) {
-      // ...   
+    class AddressServiceImpl @Autowired constructor(private val addressRepo: AddressRepository) : AddressService {
+        override fun findByDetails(street: String, city: String, country: String) = addressRepo.findByStreetContainsAndCityContainsAndCountryContains(street, city, country)
     }
     ```
 

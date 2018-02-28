@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
-
+/**
+ * REST controller providing access to the [User] resource.
+ */
 @RestController()
 @RequestMapping("/api/v1/users")
 class UserController {
@@ -24,11 +26,14 @@ class UserController {
 
     /**
      * Returns the [User] with the provided id.
-     * @return
+     * @return Returns the [User] with the provided id.
      */
     @RequestMapping(value = "/{id}", method = [(RequestMethod.GET)]) //same as @GetMapping but more verbose
     fun getUser(@PathVariable("id") id: Long) = userService.find(id)
 
+    /**
+     * Method for deleting a specific user by id
+     */
     @RequestMapping(value = "/{id}", method = [RequestMethod.DELETE])
     @ResponseStatus(HttpStatus.OK)
     fun deleteUser(@PathVariable("id") id: Long) = userService.deleteById(id)

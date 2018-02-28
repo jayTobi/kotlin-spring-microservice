@@ -1,10 +1,10 @@
-# H2
 spring:
+  #h2 - admin UI config
   h2: # enable web ui console located at localhost:8080/h2 - use the URL beneath to connect to the same DB
     console:
       enabled: true
       path: /h2
-# Datasource
+  # application datasource
   datasource:
     # change the file path OR use memory only, e.g. jdbc:h2:mem:<databaseName>
     url: jdbc:h2:file:/tmp/rest-example/h2
@@ -14,3 +14,8 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+logging:
+  level:
+    org.springframework.web: WARN
+    logging.level.org.hibernate: ERROR
+    com.github.jaytobi: DEBUG
