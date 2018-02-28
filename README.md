@@ -75,7 +75,22 @@ The project includes Swagger2 with an UI which is accessible on
 http://localhost:8080/swagger-ui.html
 
 This can be used to test the REST endpoint and for API documentation.
+# Flyway
+For advanced database migrations Flyway is used.
 
+The following naming convention is used 
+`V2018.02.28.12.30.00__ddlCreateTables.sql`
+* V: For versioned migrations, other could be R for repeatable, U for undo migrations
+* 2018.02.28.12.30.00: date and time with seconds to prevent conflicts with inconsistent increasing versions like V1.0.2 at the same time
+* __ as separator (default for Flyway)
+* ddlDescription: ddl for data definition language - part of sql to indicate the content. Other 
+ possibilities DML, DCL, ... and a description of the content
+ 
+
+https://docs.spring.io/spring-boot/docs/current/reference/html/howto-database-initialization.html
+
+Common settings can be done in application.yml see
+https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 
 
 ### Links
@@ -91,6 +106,6 @@ This can be used to test the REST endpoint and for API documentation.
 8. Postman REST Client: https://www.getpostman.com/
 9. Swagger: https://swagger.io/
 10. Spring Boot Swagger integration: https://springfox.github.io/springfox/
-
+11. Flyway: https://flywaydb.org
 
 

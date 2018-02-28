@@ -13,7 +13,7 @@ spring:
     driver-class-name: org.h2.Driver
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none #disable hibernate ddl and use flyway instead
 logging:
   level:
     org.springframework.web: WARN
