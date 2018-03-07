@@ -1,0 +1,27 @@
+# this is the configuration file used for tests, i.e. integration tests
+# values defined here will override the "normal" application settings
+spring:
+  #h2 - admin UI config
+  h2: # enable web ui console located at localhost:8080/h2 - use the URL beneath to connect to the same DB
+    console:
+      enabled: true
+      path: /h2
+  # application datasource
+  datasource:
+    # change the file path OR use memory only, e.g. jdbc:h2:mem:<databaseName>
+    url: jdbc:h2:file:/tmp/rest-example/h2
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none #disable hibernate ddl and use flyway instead
+logging:
+  level:
+    org.springframework.web: WARN
+    logging.level.org.hibernate: ERROR
+    com.github.jaytobi: DEBUG
+application:
+  address:
+    default:
+      city: SF

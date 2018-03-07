@@ -19,6 +19,7 @@
         <swagger2.version>2.8.0</swagger2.version>
         <flyway.version>5.0.7</flyway.version>
         <mockito.version>2.15.0</mockito.version>
+        <flyway.spring.test.version>5.0.0</flyway.spring.test.version>
     </properties>
 
     <parent>
@@ -110,6 +111,13 @@
         <!--<version>${mockito.version}</version>-->
         <!--<scope>test</scope>-->
         <!--</dependency>-->
+
+        <dependency>
+            <groupId>org.flywaydb.flyway-test-extensions</groupId>
+            <artifactId>flyway-spring-test</artifactId>
+            <version>${flyway.spring.test.version}</version>
+            <scope>test</scope>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
