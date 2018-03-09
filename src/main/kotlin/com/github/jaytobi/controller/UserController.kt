@@ -30,7 +30,7 @@ class UserController {
      * Returns the [User] with the provided id.
      * @return Returns the [User] with the provided id.
      */
-    @RequestMapping(value = "/{id}", method = [(RequestMethod.GET)]) //same as @GetMapping but more verbose
+    @RequestMapping(value = ["/{id}"], method = [(RequestMethod.GET)]) //same as @GetMapping but more verbose
 //    fun getUser(@PathVariable("id") id: Long) = userService.find(id)
     fun getUser(@PathVariable("id") id: Long): ResponseEntity<User> {
         val user = userService.find(id)!!.get()
@@ -48,7 +48,7 @@ class UserController {
     /**
      * Method for deleting a specific user by id
      */
-    @RequestMapping(value = "/{id}", method = [RequestMethod.DELETE])
+    @RequestMapping(value = ["/{id}"], method = [RequestMethod.DELETE])
     @ResponseStatus(HttpStatus.OK)
     fun deleteUser(@PathVariable("id") id: Long) = userService.deleteById(id)
 }
