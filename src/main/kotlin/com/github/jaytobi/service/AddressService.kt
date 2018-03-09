@@ -15,4 +15,6 @@ interface AddressService {
      * @return A list of [Address]es matching the criteria OR an empty list
      */
     fun findByDetails(street: String, city: String, country: String): List<Address>
+
+    fun findByUserId(userId: Long): List<Address>
 }

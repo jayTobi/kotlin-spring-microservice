@@ -4,10 +4,8 @@ import com.github.jaytobi.model.Address
 import com.github.jaytobi.service.AddressService
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
+import javax.websocket.server.PathParam
 
 /**
  * REST controller providing access to the [Address] resource.
@@ -15,7 +13,8 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/api/v1/addresses")
 class AddressController(val addressService: AddressService) {
-    val log : Logger = LoggerFactory.getLogger(AddressController::class.java)
+    val log: Logger = LoggerFactory.getLogger(AddressController::class.java)
+
     /**
      * Method for getting addresses.
      *

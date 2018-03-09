@@ -19,4 +19,6 @@ interface AddressRepository : CrudRepository<Address, Long> {
      * @return List<Address> a list of addresses or an empty list
      */
     fun findByStreetContainsAndCityContainsAndCountryContains(street: String, city: String, country: String): List<Address>
+
+    fun findByUserId(userId : Long) : List<Address>
 }
