@@ -2,11 +2,15 @@ package com.github.jaytobi.controller
 
 import com.github.jaytobi.model.User
 import com.github.jaytobi.service.UserService
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.hateoas.mvc.ControllerLinkBuilder
 import org.springframework.http.HttpStatus
+import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import java.net.URI
 
 /**
  * REST controller providing access to the [User] resource.
@@ -14,6 +18,8 @@ import org.springframework.web.bind.annotation.*
 @RestController()
 @RequestMapping("/api/v1/users", produces = ["application/hal+json"])
 class UserController {
+    val LOG = LoggerFactory.getLogger(UserController::class.java)
+
     // one of 3 possibilities to autowire dependencies using Spring
     @Autowired
     lateinit var userService: UserService
@@ -51,4 +57,35 @@ class UserController {
     @RequestMapping(value = ["/{id}"], method = [RequestMethod.DELETE])
     @ResponseStatus(HttpStatus.OK)
     fun deleteUser(@PathVariable("id") id: Long) = userService.deleteById(id)
+
+    /**
+     *
+     */
+    @PostMapping(path = ["/"], consumes = [MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_JSON_VALUE])
+    fun postUser(@RequestBody user: User): ResponseEntity<User> {
+        LOG.debug("saving new user {}", user)
+        val saved = userService.save(user); //should be validated
+        if (saved != null) {
+            val url = ControllerLinkBuilder.linkTo(ControllerLinkBuilder.methodOn(UserController::class.java).getUser(saved.id!!)).withSelfRel();
+            user.add(url)
+            return ResponseEntity.created(URI(url.href)).build();
+        } else {
+            return ResponseEntity.noContent().build();
+        }
+    }
+
+    @PutMapping(value = ["/{id}"], consumes = [MediaType.APPLICATION_JSON_UTF8_VALUE])
+    fun putUser(@PathVariable("id") id: Long, @RequestBody user: User): ResponseEntity<User> {
+        LOG.debug("updating user with id {} and data {}", id, user)
+        val dbUser = userService.find(id);
+        return if (dbUser != null) {
+            val merge = dbUser.get()
+            merge.email = user.email
+            merge.name = user.name
+            val saved = userService.save(merge)
+            ResponseEntity.ok(saved);
+        } else {
+            ResponseEntity.notFound().build();
+        }
+    }
 }

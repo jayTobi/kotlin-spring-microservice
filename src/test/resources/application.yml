@@ -1,5 +1,3 @@
-# this is the configuration file used for tests, i.e. integration tests
-# values defined here will override the "normal" application settings
 spring:
   #h2 - admin UI config
   h2: # enable web ui console located at localhost:8080/h2 - use the URL beneath to connect to the same DB
@@ -16,11 +14,23 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none #disable hibernate ddl and use flyway instead
+      database-platform: org.hibernate.dialect.H2Dialect
+      dialect: org.hibernate.dialect.H2Dialect
+      show_sql: false
+      format_sql: true
+      jdbc:
+        batch_versioned_data: true
+        batch_size: 50
+      order_inserts: true
+      order_updates: true
+      id:
+        new_generator_mappings: true
 logging:
   level:
     org.springframework.web: WARN
     logging.level.org.hibernate: ERROR
     com.github.jaytobi: DEBUG
+
 application:
   address:
     default:

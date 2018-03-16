@@ -1,2 +1,2 @@
-ALTER TABLE Address ADD COLUMN user_id BIGINT(19);
-ALTER TABLE Address ADD FOREIGN KEY (user_id) REFERENCES User(id);
+ALTER TABLE address ADD COLUMN user_id BIGINT(19);
+ALTER TABLE address ADD FOREIGN KEY (user_id) REFERENCES user(id);

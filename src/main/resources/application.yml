@@ -14,6 +14,17 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none #disable hibernate ddl and use flyway instead
+      database-platform: org.hibernate.dialect.H2Dialect
+      dialect: org.hibernate.dialect.H2Dialect
+      show_sql: false
+      format_sql: true
+      jdbc:
+        batch_versioned_data: true
+        batch_size: 50
+      order_inserts: true
+      order_updates: true
+      id:
+        new_generator_mappings: true
 logging:
   level:
     org.springframework.web: WARN
