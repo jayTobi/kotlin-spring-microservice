@@ -25,7 +25,7 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 @TestPropertySource("classpath:application.yml")
 @TestExecutionListeners(DependencyInjectionTestExecutionListener::class,
         FlywayTestExecutionListener::class)
-class AddressControllerMockMVCTest {
+class UserControllerIT {
     @Autowired
     lateinit var wac: WebApplicationContext
 
@@ -34,7 +34,7 @@ class AddressControllerMockMVCTest {
 
     @Test
     fun verifyEnv() {
-        val servletContext = wac.getServletContext()
+        val servletContext = wac.servletContext
         assertNotNull(servletContext);
         assertNotNull(wac.getBean("userController"));
     }
@@ -45,6 +45,8 @@ class AddressControllerMockMVCTest {
         val user = testRestTemplate.getForObject("/api/v1/users/1", User::class.java, emptyMap<Object, Object>())
         println(user)
         assertEquals("jon@doe.com", user.email)
+        assertEquals(1L, user.id)
+        assertEquals("Jon Doe", user.name)
     }
 
     @Test
