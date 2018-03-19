@@ -7,7 +7,7 @@ spring:
   # application datasource
   datasource:
     # change the file path OR use memory only, e.g. jdbc:h2:mem:<databaseName>
-    url: jdbc:h2:file:/tmp/rest-example/h2
+    url: jdbc:h2:mem:h2
     username: sa
     password:
     driver-class-name: org.h2.Driver

@@ -1,5 +1,6 @@
 package com.github.jaytobi.controller
 
+import org.junit.jupiter.api.Assertions.*
 import org.flywaydb.test.FlywayTestExecutionListener
 import org.flywaydb.test.annotation.FlywayTest
 import org.junit.Test
@@ -13,7 +14,6 @@ import org.springframework.test.context.TestExecutionListeners
 import org.springframework.test.context.TestPropertySource
 import org.springframework.test.context.junit4.SpringRunner
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener
-import kotlin.test.assertEquals
 
 
 /**
@@ -32,9 +32,12 @@ class AddressControllerIT {
     lateinit var defaultCity: String
 
 
+    /**
+     * Testing the controller directly.
+     */
     @Test
     @FlywayTest(locationsForMigrate = ["dbtest/migration"])
-    fun integrationTesting() {
+    fun getAllAddressesOnController() {
         val addresses = addressController.getAddresses("%", "%", "%")
         assertEquals(3, addresses.size)
     }

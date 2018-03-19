@@ -4,6 +4,7 @@ import com.github.jaytobi.model.Address
 import com.github.jaytobi.service.AddressService
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
 import javax.websocket.server.PathParam
 
@@ -22,7 +23,7 @@ class AddressController(val addressService: AddressService) {
      * can be provided in any combination to narrow down the results.
      *
      */
-    @GetMapping("/")
+    @GetMapping("/", produces = [(MediaType.APPLICATION_JSON_UTF8_VALUE)])
     fun getAddresses(@RequestParam(name = "street", required = false, defaultValue = "%") street: String,
                      @RequestParam(name = "city", required = false, defaultValue = "%") city: String,
                      @RequestParam(name = "country", required = false, defaultValue = "%") country: String
